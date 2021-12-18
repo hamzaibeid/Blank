@@ -9,11 +9,9 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
 {
 
     [SerializeField]
-    private int itterations = 10;
-    [SerializeField]
-    public int walkLength = 10;
-    [SerializeField]
-    public bool startRandomlyEachItteration = true;
+    private SimpleRandomWalkSO randomWalkParameters;
+
+
 
 
     protected override void RunProcidularGenerator()
@@ -29,11 +27,11 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     {
         var currentPosition = startPos;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-        for (int i = 0; i < itterations; i++)
+        for (int i = 0; i < randomWalkParameters.itterations; i++)
         {
-            var path = ProceduralGenerationAlgorithims.SimpleRandomWalk(currentPosition,walkLength);
+            var path = ProceduralGenerationAlgorithims.SimpleRandomWalk(currentPosition, randomWalkParameters.walkLength);
             floorPositions.UnionWith(path);
-            if (startRandomlyEachItteration)
+            if (randomWalkParameters.StartRandomlyEachItteration)
                 currentPosition = floorPositions.ElementAt(Random.Range(0,floorPositions.Count));
         }
         return floorPositions;
