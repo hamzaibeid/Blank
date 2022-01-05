@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class ProceduralGenerationAlgorithims
 { 
@@ -30,8 +31,84 @@ public static class ProceduralGenerationAlgorithims
         }
         return corridore;
     }
+    public static List<BoundsInt> BinarySpacePartitioning(BoundsInt spaceToSplit,int minWidth,int minHeight)
+    {
+        //FIFO
+        Queue<BoundsInt> roomsQueue = new Queue<BoundsInt>();
+        List<BoundsInt> roomList = new List<BoundsInt>();
+        
+        //We remove the object from queue
+        roomsQueue.Enqueue(spaceToSplit);
+        while (roomsQueue.Count > 0)
+        {
+            var room = roomsQueue.Dequeue();
+            if(room.size.y >= minHeight && room.size.x >= minWidth)
+            {
+                if(Random.value < 0.5f)
+                {
+                    if (room.size.y >= minHeight * 2)
+                    {
+                        SplitHorizontaly(minHeight, roomsQueue, room);
+                    }
+                    else if (room.size.x >= minWidth * 2)
+                    {
+                        SplitVerticaly(minWidth, roomsQueue, room);
+                    }
+                    else
+                    {
+                        roomList.Add(room);
+                    }
+                }
+                else
+                {
+                    
+                    if (room.size.x >= minWidth * 2)
+                    {
+                        SplitVerticaly(minWidth, roomsQueue, room);
+                    }
+                   else if (room.size.y >= minHeight * 2)
+                    {
+                        SplitHorizontaly( minHeight, roomsQueue, room);
+                    }
+                    else
+                    {
+                        roomList.Add(room);
+                    }
 
+                }
+            }
+        }
+        return roomList;
+        
+    }
+
+    private static void SplitVerticaly(int minWidth, Queue<BoundsInt> roomsQueue, BoundsInt room)
+    {
+        var xSplit = Random.Range(1,room.size.x);
+        BoundsInt room1 = new BoundsInt(room.min,new Vector3Int(xSplit,room.size.y,room.size.z));
+        BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x+xSplit,room.min.y,room.min.z),
+                          new Vector3Int(room.size.x-xSplit,room.size.y,room.size.z));
+
+        roomsQueue.Enqueue(room1);
+        roomsQueue.Enqueue(room2);
+
+    }
+
+    private static void SplitHorizontaly(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room)
+    {
+        var ySplit = Random.Range(1, room.size.y);
+        // (minHeight , room.size.y - minhHeight)
+        BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(room.size.x, ySplit, room.size.z));
+        BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x, room.min.y + ySplit, room.min.z),
+                          new Vector3Int(room.size.x, room.size.y - ySplit, room.size.z));
+
+
+        roomsQueue.Enqueue(room1);
+        roomsQueue.Enqueue(room2);
+
+    }
 }
+
 public static class Direction2D
 {
     public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int>
