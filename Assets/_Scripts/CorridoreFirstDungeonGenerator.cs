@@ -99,7 +99,7 @@ public class CorridoreFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             currentPosition = corridore[corridore.Count - 1];
             potentialRoomPosintions.Add(currentPosition);
             floorPositions.UnionWith(corridore);
-        }
+        } 
     }
 
 }
