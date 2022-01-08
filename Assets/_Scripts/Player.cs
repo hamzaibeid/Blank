@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         // Reset moveDelta
-        moveDelta = new Vector3(x, y, 0);
+        moveDelta = new Vector3(x, y, 0).normalized;
 
         // Swap sprite direction,wether your going righ or left
         if (moveDelta.x > 0)

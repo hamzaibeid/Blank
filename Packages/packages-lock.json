@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.manakhovn.figma_to_unity_importer": {
+      "version": "https://github.com/ManakhovN/FigmaToUnityImporter.git?path=/Assets/FigmaImporter",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "2.1.4"
+      },
+      "hash": "f1444145a59d550c7a86ea078deefa15e0ef84d7"
+    },
     "com.unity.2d.animation": {
       "version": "3.2.6",
       "depth": 0,
@@ -120,8 +129,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "2.1.1",
-      "depth": 0,
+      "version": "2.1.4",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
