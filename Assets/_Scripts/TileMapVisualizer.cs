@@ -9,7 +9,10 @@ public class TileMapVisualizer : MonoBehaviour
     [SerializeField]
     private Tilemap FloorTileMap, WallTileMap;
     [SerializeField]
-    private TileBase FloorTile, WallTop, WallSideRight, WallSideLeft, WallBottom,WallFull;
+    private TileBase FloorTile, WallTop, WallSideRight, WallSideLeft, WallBottom, WallFull,
+        WallInnerCornerDownLeft, WallInnerCornerDownRight,
+        WallDiagonalCornerDownRight, WallDiagonalCornerDownLeft, WallDiagonalCornerUpRight, WallDiagonalCornerUpLeft;
+        
 
 
 
@@ -67,8 +70,43 @@ public class TileMapVisualizer : MonoBehaviour
         WallTileMap.ClearAllTiles();
     }
 
-    internal void PaintSingleCornerWall(Vector2Int position, string neighborsBinaryType)
+    internal void PaintSingleCornerWall(Vector2Int position, string binaryType)
     {
-        
+        int typeAsInt = Convert.ToInt32(binaryType, 2);
+        TileBase tile = null;
+        if (WallTypesHelper.wallInnerCornerDownLeft.Contains(typeAsInt))
+        {
+            tile = WallInnerCornerDownLeft;
+        }
+        else if (WallTypesHelper.wallInnerCornerDownRight.Contains(typeAsInt))
+        {
+            tile = WallInnerCornerDownRight;
+        }
+        else if (WallTypesHelper.wallDiagonalCornerDownLeft.Contains(typeAsInt))
+        {
+            tile = WallDiagonalCornerDownLeft;
+        }
+        else if (WallTypesHelper.wallDiagonalCornerDownRight.Contains(typeAsInt))
+        {
+            tile = WallDiagonalCornerDownRight;
+        }
+        else if (WallTypesHelper.wallDiagonalCornerUpRight.Contains(typeAsInt))
+        {
+            tile = WallDiagonalCornerUpRight;
+        }
+        else if (WallTypesHelper.wallDiagonalCornerUpLeft.Contains(typeAsInt))
+        {
+            tile = WallDiagonalCornerUpLeft;
+        }
+        else if (WallTypesHelper.wallFullEightDirections.Contains(typeAsInt))
+        {
+            tile = WallFull;
+        }
+        else if (WallTypesHelper.wallBottmEightDirections.Contains(typeAsInt))
+        {
+            tile = WallBottom;
+        }
+        if (tile != null)
+            PaintSingleTile(WallTileMap,tile,position);
     }
 }
