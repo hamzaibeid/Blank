@@ -9,7 +9,7 @@ public class TileMapVisualizer : MonoBehaviour
     [SerializeField]
     private Tilemap FloorTileMap, WallTileMap;
     [SerializeField]
-    private TileBase FloorTile, WallTop;
+    private TileBase FloorTile, WallTop, WallSideRight, WallSideLeft, WallBottom,WallFull;
 
 
 
@@ -26,9 +26,33 @@ public class TileMapVisualizer : MonoBehaviour
         }
     }
 
-    internal void PaintSingleWall(Vector2Int position)
+    internal void PaintSingleWall(Vector2Int position,string binaryType)
     {
-        PaintSingleTile(WallTileMap, WallTop,position);
+        //Debug.Log(position+" type: " + binaryType);
+        int typeAsInt = Convert.ToInt32(binaryType,2);
+        TileBase tile = null;
+        if (WallTypesHelper.wallTop.Contains(typeAsInt))
+        {
+            tile = WallTop;
+        }
+        else if (WallTypesHelper.wallSideRight.Contains(typeAsInt))
+        {
+            tile = WallSideRight;
+        }
+        else if (WallTypesHelper.wallSideLeft.Contains(typeAsInt))
+        {
+            tile = WallSideLeft;
+        }
+        else if (WallTypesHelper.wallBottm.Contains(typeAsInt))
+        {
+            tile = WallBottom;
+        }
+        else if (WallTypesHelper.wallFull.Contains(typeAsInt))
+        {
+            tile = WallFull;
+        }
+        if (tile != null)        
+        PaintSingleTile(WallTileMap, tile,position);
     }
 
     private void PaintSingleTile(Tilemap tileMap, TileBase tile, Vector2Int position)
@@ -43,4 +67,8 @@ public class TileMapVisualizer : MonoBehaviour
         WallTileMap.ClearAllTiles();
     }
 
+    internal void PaintSingleCornerWall(Vector2Int position, string neighborsBinaryType)
+    {
+        
+    }
 }
