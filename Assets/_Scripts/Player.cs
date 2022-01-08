@@ -7,12 +7,18 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private RaycastHit2D hit;
-    
+    public float speed = 5f;
+    public Rigidbody2D rb;
 
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
     }
+    private void Update()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
         float x = Input.GetAxisRaw("Horizontal");
@@ -30,6 +36,7 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(-4,4,1);
         }
+        Move();
 
         //make sure that we can move in this direction, by casting a box there first,if the box returns null , we're free to move
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime),
@@ -48,6 +55,10 @@ public class Player : MonoBehaviour
             transform.Translate(moveDelta.x * Time.deltaTime, 0,0);
         }
 
+    }
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDelta.x * speed, moveDelta.y * speed);
     }
 
 }
