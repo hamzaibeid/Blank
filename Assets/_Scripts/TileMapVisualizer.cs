@@ -9,7 +9,7 @@ public class TileMapVisualizer : MonoBehaviour
     [SerializeField]
     private Tilemap FloorTileMap, WallTileMap;
     [SerializeField]
-    private TileBase FloorTile, WallTop, WallSideRight, WallSideLeft, WallBottom, WallFull,
+    private TileBase FloorTile, WallTop, WallSideRight, WallSideLeft, WallBottom, WallFull,enemy,
         WallInnerCornerDownLeft, WallInnerCornerDownRight,
         WallDiagonalCornerDownRight, WallDiagonalCornerDownLeft, WallDiagonalCornerUpRight, WallDiagonalCornerUpLeft;
         

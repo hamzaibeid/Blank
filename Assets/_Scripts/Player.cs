@@ -30,11 +30,11 @@ public class Player : MonoBehaviour
         // Swap sprite direction,wether your going righ or left
         if (moveDelta.x > 0)
         {
-            transform.localScale = new Vector3(4, 4, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else if(moveDelta.x < 0)
         {
-            transform.localScale = new Vector3(-4,4,1);
+            transform.localScale = new Vector3(-1,1,1);
         }
         Move();
 
