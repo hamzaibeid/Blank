@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public GameObject player;
     private GameObject triggerringEnemy;
     public float damage;
+
+    
     
 
     void Update()
@@ -27,7 +29,7 @@ public class Bullet : MonoBehaviour
                     triggerringEnemy.GetComponent<Enemy>().health -= damage;
                     Destroy(gameObject);
                     if(triggerringEnemy.GetComponent<Enemy>().health <= 0){
-                    Destroy(other.gameObject);
+                    triggerringEnemy.GetComponent<Enemy>().Die();
                     }
                     break;
                 }

@@ -16661,7 +16661,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4231a3480f1dfd749a04d579393ff881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
+  pointsToGive: 25
+  player: {fileID: 1271101221}
 --- !u!1 &657790504
 GameObject:
   m_ObjectHideFlags: 0
@@ -22202,7 +22204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4231a3480f1dfd749a04d579393ff881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
+  pointsToGive: 15
+  player: {fileID: 1271101221}
 --- !u!1 &1271101221
 GameObject:
   m_ObjectHideFlags: 0
@@ -22313,6 +22317,7 @@ MonoBehaviour:
   movementspeed: 5
   endOfAiming: 1
   isAiming: 0
+  points: 0
   rb: {fileID: 1271101223}
   crossHair: {fileID: 434212791}
   anim: {fileID: 1271101222}

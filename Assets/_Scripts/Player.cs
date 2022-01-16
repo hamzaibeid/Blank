@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public float movementspeed;
     public bool endOfAiming;
     public bool isAiming;
+    public float points;
 
     [Space]
     [Header("References:")]
