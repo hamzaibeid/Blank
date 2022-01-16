@@ -22275,6 +22275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2163972a5aa9e2c4296f4bc5b018de86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
   playerID: 0
   Movement_Base_Speed: 5
   CrossHair_Distance: 5

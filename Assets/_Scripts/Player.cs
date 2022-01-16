@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
     [Header("Input settings: ")]
     public int playerID;
     Player player;
@@ -34,16 +35,20 @@ public class Player : MonoBehaviour
     [Header("Prefabs")]
     public GameObject bulletPrefab;
 
-
+  
+   void Start(){
+       Cursor.visible=false;
+   }
    
      void Update()
     {
-
+        
         ProccesInputs();
         Move();
         Animate();
         Aim();
         Shoot();
+         
     }
 
     private void ProccesInputs()
@@ -81,10 +86,11 @@ public class Player : MonoBehaviour
     }
     void Aim()
     {
-        if (movementDirection != Vector3.zero)
-        {
-            crossHair.transform.localPosition = movementDirection * CrossHair_Distance;
-        }
+      
+      Vector3 mouseWolrdPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWolrdPosition.z =0f;
+       crossHair.transform.position = mouseWolrdPosition;
+     
     }
     void Shoot()
     {
