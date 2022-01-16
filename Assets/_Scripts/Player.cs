@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
             anim.SetFloat("Magnitude", movementDirection.magnitude);
             anim.SetBool("isMoving", true);
         }
-        else
+        else 
         {
             anim.SetBool("isMoving",false);
         }
