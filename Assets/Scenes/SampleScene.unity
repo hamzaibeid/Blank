@@ -35843,7 +35843,7 @@ MonoBehaviour:
   Movement_Base_Speed: 5
   CrossHair_Distance: 5
   Aiming_Base_Penalty: 0
-  Bullit_base_speed: 30
+  Bullit_base_speed: 7
   movementDirection: {x: 0, y: 0, z: 0}
   movementspeed: 5
   endOfAiming: 1
