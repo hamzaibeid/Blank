@@ -6,6 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public Vector2 velocity = new Vector2(0.0f, 0.0f);
     public GameObject player;
+    private GameObject triggerringEnemy;
+    public float damage;
+    
 
     void Update()
     {
@@ -20,27 +23,23 @@ public class Bullet : MonoBehaviour
             {
                 if (other.CompareTag("Enemy"))
                 {
+                    triggerringEnemy = other.gameObject;
+                    triggerringEnemy.GetComponent<Enemy>().health -= damage;
                     Destroy(gameObject);
-                   
-                    Debug.Log(other.name);
+                    if(triggerringEnemy.GetComponent<Enemy>().health <= 0){
+                    Destroy(other.gameObject);
+                    }
                     break;
                 }
                 if (other.CompareTag("Blocking"))
                 {
                     Destroy(gameObject);
-                    Debug.Log(other.name);
                     break;
                 }
             }
         }
         transform.position = newPosition;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.Equals("Zombie"))
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }
+
+  
 }

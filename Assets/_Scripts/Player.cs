@@ -92,10 +92,13 @@ public class Player : MonoBehaviour
        crossHair.transform.position = mouseWolrdPosition;
      
     }
+    RaycastHit2D hit;
     void Shoot()
     {
+        
         Vector2 shootingDirection = crossHair.transform.localPosition;
         shootingDirection.Normalize();
+        
         if (endOfAiming)
         {
           
@@ -106,9 +109,8 @@ public class Player : MonoBehaviour
             Bullet.transform.Rotate(0, 0, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
             Destroy(Bullet, 3.0f);
             
+            
         }
-        
-    }
-        
 
+}
 }

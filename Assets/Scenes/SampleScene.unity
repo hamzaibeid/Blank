@@ -16430,6 +16430,7 @@ GameObject:
   - component: {fileID: 640057050}
   - component: {fileID: 640057052}
   - component: {fileID: 640057053}
+  - component: {fileID: 640057054}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Enemy
@@ -16648,6 +16649,19 @@ MonoBehaviour:
   version: 1
   penalty: 1000
   randomStep: 51
+--- !u!114 &640057054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640057045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4231a3480f1dfd749a04d579393ff881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &657790504
 GameObject:
   m_ObjectHideFlags: 0
@@ -21993,6 +22007,7 @@ GameObject:
   - component: {fileID: 1153271412}
   - component: {fileID: 1153271414}
   - component: {fileID: 1153271415}
+  - component: {fileID: 1153271416}
   m_Layer: 11
   m_Name: Atlas_11
   m_TagString: Enemy
@@ -22175,6 +22190,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1153271416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153271409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4231a3480f1dfd749a04d579393ff881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1271101221
 GameObject:
   m_ObjectHideFlags: 0
