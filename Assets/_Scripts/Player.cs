@@ -1,64 +1,108 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-    private Vector3 moveDelta;
-    private RaycastHit2D hit;
-    public float speed = 5f;
+    [Header("Input settings: ")]
+    public int playerID;
+    Player player;
+
+    [Space]
+    [Header ("Charachter attributes:")]
+    public float Movement_Base_Speed = 5f;
+    public float CrossHair_Distance = 1.0f;
+    public float Aiming_Base_Penalty;
+    public float Bullit_base_speed = 1.0f;
+   
+
+    [Space]
+    [Header("Charachter statistics")]
+    public Vector3 movementDirection;
+    public float movementspeed;
+    public bool endOfAiming;
+    public bool isAiming;
+
+    [Space]
+    [Header("References:")]
     public Rigidbody2D rb;
+    public GameObject crossHair;
+    public Animator anim;
 
-    private void Start()
+    [Space]
+    [Header("Prefabs")]
+    public GameObject bulletPrefab;
+
+
+   
+     void Update()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
-    private void Update()
-    {
-        
-    }
 
-    private void FixedUpdate()
-    {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-        // Reset moveDelta
-        moveDelta = new Vector3(x, y, 0).normalized;
-
-        // Swap sprite direction,wether your going righ or left
-        if (moveDelta.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if(moveDelta.x < 0)
-        {
-            transform.localScale = new Vector3(-1,1,1);
-        }
+        ProccesInputs();
         Move();
+        Animate();
+        Aim();
+        Shoot();
+    }
 
-        //make sure that we can move in this direction, by casting a box there first,if the box returns null , we're free to move
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime),
-            LayerMask.GetMask("Actor","Blocking"));
-        if(hit.collider == null)
+    private void ProccesInputs()
+    {
+        movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0.0f);
+        movementspeed = Mathf.Clamp(movementDirection.magnitude,0.0f,1.0f);
+        movementDirection.Normalize();
+        endOfAiming = Input.GetButtonUp("Fire1");
+        isAiming = Input.GetButton("Fire1");
+        if (isAiming)
         {
-            //make the sprite move
-            transform.Translate(0,moveDelta.y * Time.deltaTime,0);
+            movementspeed += Aiming_Base_Penalty;
         }
+    }
 
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x,0), Mathf.Abs(moveDelta.x * Time.deltaTime),
-            LayerMask.GetMask("Actor", "Blocking"));
-        if (hit.collider == null)
+
+   void Animate()
+    {
+        if(movementDirection != Vector3.zero)
         {
-            //make the sprite move
-            transform.Translate(moveDelta.x * Time.deltaTime, 0,0);
+            anim.SetFloat("Horizontal", movementDirection.x);
+            anim.SetFloat("Vertical", movementDirection.y);
+            anim.SetFloat("Magnitude", movementDirection.magnitude);
+            anim.SetBool("isMoving", true);
         }
-
+        else
+        {
+            anim.SetBool("isMoving",false);
+        }
+       // anim.SetFloat("Speed", movementspeed);
     }
     void Move()
     {
-        rb.velocity = new Vector2(moveDelta.x * speed, moveDelta.y * speed);
+        rb.velocity = movementDirection * movementspeed * Movement_Base_Speed;
     }
+    void Aim()
+    {
+        if (movementDirection != Vector3.zero)
+        {
+            crossHair.transform.localPosition = movementDirection * CrossHair_Distance;
+        }
+    }
+    void Shoot()
+    {
+        Vector2 shootingDirection = crossHair.transform.localPosition;
+        shootingDirection.Normalize();
+        if (endOfAiming)
+        {
+          
+            GameObject Bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Bullet bulletScript = Bullet.GetComponent<Bullet>();
+            bulletScript.velocity = shootingDirection * Bullit_base_speed;
+            bulletScript.player = gameObject;
+            Bullet.transform.Rotate(0, 0, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
+            Destroy(Bullet, 3.0f);
+            
+        }
+        
+    }
+        
 
 }
