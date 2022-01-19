@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [Header("Input settings: ")]
-    public int playerID;
+     public int playerID;
     Player player;
+    public float health ;
+    public GameObject enemy ;
 
     [Space]
     [Header ("Charachter attributes:")]
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     [Space]
     [Header("Prefabs")]
     public GameObject bulletPrefab;
+    
 
   
    void Start(){
@@ -49,7 +52,8 @@ public class Player : MonoBehaviour
         Animate();
         Aim();
         Shoot();
-         
+  
+        
     }
 
     private void ProccesInputs()
@@ -114,4 +118,14 @@ public class Player : MonoBehaviour
         }
 
 }
+void onCollison2D(Collider2D col){
+    if(col.gameObject.tag.Equals("Enemy")){
+       
+        Debug.Log("yay");
+    }
 }
+
+}
+   
+
+
