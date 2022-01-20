@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float pointsToGive;
      public GameObject player;
+     public HealthBar healthBar ;
 
 private void Reset(){
     GetComponent<BoxCollider2D>().isTrigger=true;
@@ -16,8 +17,10 @@ private void Reset(){
 private void OnTriggerEnter2D(Collider2D collison){
     if(collison.gameObject.tag=="player_0"){
         player.GetComponent<Player>().health-=damage;
+        healthBar.SetHealth( player.GetComponent<Player>().health);
         if(player.GetComponent<Player>().health<=0){
             Destroy(player.gameObject);
+            
         }
     }
 }
