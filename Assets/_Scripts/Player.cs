@@ -40,9 +40,7 @@ public class Player : MonoBehaviour
     
 
   
-   void Start(){
-       Cursor.visible=false;
-   }
+   
    
      void Update()
     {

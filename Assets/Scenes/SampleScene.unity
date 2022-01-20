@@ -251,10 +251,10 @@ GameObject:
   - component: {fileID: 239618380}
   m_Layer: 0
   m_Name: EnemySpawn
-  m_TagString: Untagged
+  m_TagString: Cam2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &239618374
 MonoBehaviour:
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239618373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6245486883f27504f8500fa8a0c73ce7, type: 3}
   m_Name: 
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: Cam2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30680,7 +30680,7 @@ MonoBehaviour:
   Movement_Base_Speed: 5
   CrossHair_Distance: 5
   Aiming_Base_Penalty: 0
-  Bullit_base_speed: 7
+  Bullit_base_speed: 10
   movementDirection: {x: 0, y: 0, z: 0}
   movementspeed: 5
   endOfAiming: 1
