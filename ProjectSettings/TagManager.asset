@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - floor
   - Bullet
+  - CanavsMain
+  - Cam
+  - Cam2
   layers:
   - Default
   - TransparentFX
