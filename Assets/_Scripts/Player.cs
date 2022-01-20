@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
+    public HealthBar healthBar;
     [Header("Input settings: ")]
      public int playerID;
     Player player;
@@ -40,7 +41,10 @@ public class Player : MonoBehaviour
     
 
   
-   
+   void Start(){
+    
+      
+   }
    
      void Update()
     {
@@ -50,6 +54,7 @@ public class Player : MonoBehaviour
         Animate();
         Aim();
         Shoot();
+        
   
         
     }
@@ -116,14 +121,11 @@ public class Player : MonoBehaviour
         }
 
 }
-void onCollison2D(Collider2D col){
-    if(col.gameObject.tag.Equals("Enemy")){
-       
-        Debug.Log("yay");
-    }
-}
 
 }
+          
+
+
    
 
 
