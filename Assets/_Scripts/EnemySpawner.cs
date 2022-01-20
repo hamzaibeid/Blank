@@ -11,8 +11,8 @@ public class EnemySpawner : TileMapVisualizer
 
     void Start()
     {
-       
             StartCoroutine(SpawnAnEnemy()); 
+          
         
     }
 

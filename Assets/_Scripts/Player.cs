@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    public HealthBar healthBar;
     [Header("Input settings: ")]
      public int playerID;
     Player player;
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public bool endOfAiming;
     public bool isAiming;
     public float points;
+    public Text pointsText; 
 
     [Space]
     [Header("References:")]
@@ -39,12 +40,6 @@ public class Player : MonoBehaviour
     [Header("Prefabs")]
     public GameObject bulletPrefab;
     
-
-  
-   void Start(){
-    
-      
-   }
    
      void Update()
     {
@@ -54,8 +49,7 @@ public class Player : MonoBehaviour
         Animate();
         Aim();
         Shoot();
-        
-  
+       pointsText.text = points.ToString();
         
     }
 
@@ -121,11 +115,14 @@ public class Player : MonoBehaviour
         }
 
 }
+void onCollison2D(Collider2D col){
+    if(col.gameObject.tag.Equals("Enemy")){
+       
+        Debug.Log("yay");
+    }
+}
 
 }
-          
-
-
    
 
 

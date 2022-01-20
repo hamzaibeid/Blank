@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public float damage;
 
     
-    
+   
 
     void Update()
     {
