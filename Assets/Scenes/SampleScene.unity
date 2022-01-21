@@ -505,21 +505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245486883f27504f8500fa8a0c73ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloorTileMap: {fileID: 0}
-  WallTileMap: {fileID: 0}
-  FloorTile: {fileID: 0}
-  WallTop: {fileID: 0}
-  WallSideRight: {fileID: 0}
-  WallSideLeft: {fileID: 0}
-  WallBottom: {fileID: 0}
-  WallFull: {fileID: 0}
-  enemy: {fileID: 0}
-  WallInnerCornerDownLeft: {fileID: 0}
-  WallInnerCornerDownRight: {fileID: 0}
-  WallDiagonalCornerDownRight: {fileID: 0}
-  WallDiagonalCornerDownLeft: {fileID: 0}
-  WallDiagonalCornerUpRight: {fileID: 0}
-  WallDiagonalCornerUpLeft: {fileID: 0}
   spawnRaduis: 10
   time: 1.5
   Enemies:
@@ -32096,7 +32081,7 @@ MonoBehaviour:
   radius: 4.08
   height: 3.39
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 1.8
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2

@@ -115,12 +115,7 @@ public class Player : MonoBehaviour
         }
 
 }
-void onCollison2D(Collider2D col){
-    if(col.gameObject.tag.Equals("Enemy")){
-       
-        Debug.Log("yay");
-    }
-}
+
 
 }
    
